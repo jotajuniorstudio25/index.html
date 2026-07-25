@@ -1,0 +1,318 @@
+<!-- ===================================
+TOP 5 - RÁDIO SERENATA
+PARTE 1 - HTML + CSS
+=================================== -->
+
+<div class="top5-card">
+
+    <div class="top5-topo">
+        🏆 TOP 5 DA SEMANA
+    </div>
+
+    <div id="listaTop5"></div>
+
+</div>
+
+<style>
+
+.top5-card{
+
+width:100%;
+max-width:380px;
+height:500px;
+
+background:linear-gradient(180deg,#111,#1b1b1b);
+
+border:2px solid #D4AF37;
+
+border-radius:18px;
+
+overflow:hidden;
+
+font-family:Arial,Helvetica,sans-serif;
+
+box-shadow:0 0 20px rgba(212,175,55,.25);
+
+}
+
+.top5-topo{
+
+height:48px;
+
+background:linear-gradient(90deg,#D4AF37,#FFD75A);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:18px;
+
+font-weight:bold;
+
+color:#111;
+
+letter-spacing:1px;
+
+}
+
+#listaTop5{
+
+height:452px;
+
+overflow-y:auto;
+
+padding:10px;
+
+}
+
+#listaTop5::-webkit-scrollbar{
+
+width:6px;
+
+}
+
+#listaTop5::-webkit-scrollbar-thumb{
+
+background:#D4AF37;
+
+border-radius:10px;
+
+}
+
+.itemTop{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+padding:10px;
+
+margin-bottom:10px;
+
+background:#202020;
+
+border-radius:14px;
+
+transition:.3s;
+
+}
+
+.itemTop:hover{
+
+background:#2b2b2b;
+
+transform:scale(1.02);
+
+}
+
+.posicao{
+
+width:42px;
+
+font-size:28px;
+
+text-align:center;
+
+font-weight:bold;
+
+color:#FFD75A;
+
+}
+
+.capa{
+
+width:60px;
+
+height:60px;
+
+border-radius:12px;
+
+overflow:hidden;
+
+flex-shrink:0;
+
+}
+
+.capa img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+}
+
+.info{
+
+flex:1;
+
+}
+
+.info h3{
+
+margin:0;
+
+font-size:16px;
+
+color:#FFD75A;
+
+}
+
+.info p{
+
+margin:4px 0 0;
+
+font-size:13px;
+
+color:#ddd;
+
+}
+
+@media(max-width:480px){
+
+.top5-card{
+
+max-width:100%;
+
+height:auto;
+
+}
+
+#listaTop5{
+
+height:auto;
+
+}
+
+}
+
+</style>
+<!-- ===================================
+TOP 5 - PARTE 2
+DADOS EDITÁVEIS
+=================================== -->
+
+<script>
+
+const top5=[
+
+{
+foto:"https://i.postimg.cc/RhCcBZbS/0x1900-000000-80-0-0.jpg",
+musica:"Making love out of nothoing at all",
+cantor:"Air supply"
+},
+
+{
+foto:"https://i.postimg.cc/1zgCkJVH/djavancapacaixa.jpg",
+musica:"Se",
+cantor:"Djavan"
+},
+
+{
+foto:"https://i.postimg.cc/3xjJgFx0/Legiao-Urbana-As-Quatro-Estacoes.jpg",
+musica:"Hoje a noite não tem luar",
+cantor:"Legião urbana"
+},
+
+{
+foto:"https://i.postimg.cc/25K6686y/0x1900-000000-80-0-0-(1).jpg",
+musica:"Seu nome",
+cantor:"Biafra"
+},
+
+{
+foto:"https://i.postimg.cc/fLnG56qk/ana-carolina.jpg",
+musica:"Quem de nós dois",
+cantor:"Ana carolina"
+}
+
+];
+
+</script>
+<!-- ===================================
+TOP 5 - PARTE 3
+JAVASCRIPT
+=================================== -->
+
+<script>
+
+function medalha(pos){
+
+switch(pos){
+
+case 1:
+return "🥇";
+
+case 2:
+return "🥈";
+
+case 3:
+return "🥉";
+
+case 4:
+return "4️⃣";
+
+case 5:
+return "5️⃣";
+
+default:
+return pos;
+
+}
+
+}
+
+function carregarTop5(){
+
+let html="";
+
+top5.forEach(function(item,index){
+
+let pos=index+1;
+
+html+=`
+
+<div class="itemTop">
+
+<div class="posicao">
+
+${medalha(pos)}
+
+</div>
+
+<div class="capa">
+
+<img src="${item.foto}" alt="${item.musica}">
+
+</div>
+
+<div class="info">
+
+<h3>${item.musica}</h3>
+
+<p>${item.cantor}</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("listaTop5").innerHTML=html;
+
+}
+
+window.onload=function(){
+
+carregarTop5();
+
+};
+
+</script>

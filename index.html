@@ -1,1 +1,942 @@
-<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>index</title><style>body{margin:0;background:#111;font-family:Arial}.box{max-width:360px;margin:20px auto;background:#1b1b1b;border:2px solid #d4af37;border-radius:16px;padding:18px;color:#fff;text-align:center}.live{display:inline-block;background:#d50000;padding:6px 14px;border-radius:18px;font-weight:bold;animation:p 1s infinite}@keyframes p{50%{opacity:.45}}.prog{font-size:28px;color:#ffd54a;font-weight:bold;margin:18px 0 8px}.loc{font-size:20px}.hr,.next{color:#ccc;margin-top:8px}.btn{display:inline-block;margin-top:16px;background:#d4af37;color:#111;text-decoration:none;padding:10px 18px;border-radius:22px;font-weight:bold}</style></head><body><div class='box'><div class='live'>🔴 AO VIVO</div><div id='prog' class='prog'></div><div id='loc' class='loc'></div><div id='hr' class='hr'></div><div id='next' class='next'></div><a class='btn' target='_blank' href='https://server11.srvsh.com.br:6736/stream'>▶ OUVIR AGORA</a></div><script>const g=[{a:0,b:6,p:'Madrugada Show',l:'Rádio Serenata'},{a:6,b:10,p:'Show da Manhã',l:'André Martins'},{a:10,b:12,p:'Seleção Musical',l:'Jota Júnior'},{a:12,b:15,p:'Flashback',l:'Carla Mendes'},{a:15,b:18,p:'Seleção Musical 2',l:'Jota Júnior'},{a:18,b:21,p:'Show da Noite',l:'Ednaldo Lima'},{a:21,b:22,p:'Gospel Hits',l:'Roberta Sousa'},{a:22,b:24,p:'Love Night',l:'Josué Silva'}];function u(){let h=new Date().getHours(),i=g.findIndex(x=>h>=x.a&&h<x.b),x=g[i],n=g[(i+1)%g.length];prog.textContent=x.p;loc.textContent='🎙 '+x.l;hr.textContent='⏰ '+String(x.a).padStart(2,'0')+':00 às '+String(x.b).padStart(2,'0')+':00';next.textContent='Próximo: '+n.p+' - '+String(n.a).padStart(2,'0')+':00'}u();setInterval(u,60000);</script></body></html>
+<!-- ===========================
+RÁDIO SERENATA - PAINEL AO VIVO
+============================ -->
+
+<div class="serenata-card">
+
+    <div class="serenata-topo">
+        <div class="live"></div>
+        <span>AO VIVO</span>
+
+        <div class="hora" id="horaAtual">00:00</div>
+    </div>
+
+    <div class="serenata-centro">
+
+        <div class="logo-radio">
+            🎙️
+        </div>
+
+        <div class="dados">
+
+            <h2 id="programaAtual">
+                Rádio Serenata
+            </h2>
+
+            <div class="slogan">
+                A trilha sonora do amor e da saudade
+            </div>
+
+            <div class="linha"></div>
+
+            <div class="item">
+                <strong>🎙️ Locutor</strong><br>
+                <span id="locutor">Rádio Serenata</span>
+            </div>
+
+            <div class="item">
+                <strong>🕒 Programa Atual</strong><br>
+                <span id="agora"></span>
+            </div>
+
+            <div class="item">
+                <strong>⏭ Próximo Programa</strong><br>
+                <span id="proximo"></span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+
+.serenata-card{
+
+width:100%;
+max-width:430px;
+
+background:linear-gradient(160deg,#111,#1d1d1d);
+
+border-radius:18px;
+
+overflow:hidden;
+
+border:2px solid #d4af37;
+
+box-shadow:0 0 25px rgba(212,175,55,.25);
+
+font-family:Arial,Helvetica,sans-serif;
+
+color:white;
+
+}
+
+.serenata-topo{
+
+height:50px;
+
+background:linear-gradient(90deg,#d4af37,#ffd75a);
+
+display:flex;
+
+align-items:center;
+
+padding:0 15px;
+
+font-weight:bold;
+
+color:#000;
+
+}
+
+.live{
+
+width:12px;
+
+height:12px;
+
+border-radius:50%;
+
+background:red;
+
+margin-right:8px;
+
+animation:pulse 1s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{opacity:.4;transform:scale(.8);}
+50%{opacity:1;transform:scale(1.3);}
+100%{opacity:.4;transform:scale(.8);}
+
+}
+
+.hora{
+
+margin-left:auto;
+
+font-size:18px;
+
+}
+
+.serenata-centro{
+
+display:flex;
+
+padding:20px;
+
+gap:18px;
+
+}
+
+.logo-radio{
+
+width:80px;
+
+height:80px;
+
+border-radius:18px;
+
+background:linear-gradient(#ffd75a,#c79600);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:42px;
+
+box-shadow:0 0 20px rgba(255,215,90,.35);
+
+}
+
+.dados{
+
+flex:1;
+
+}
+
+.dados h2{
+
+margin:0;
+
+color:#FFD75A;
+
+font-size:23px;
+
+}
+
+.slogan{
+
+margin-top:6px;
+
+font-size:14px;
+
+font-style:italic;
+
+color:#dddddd;
+
+line-height:20px;
+
+}
+
+.linha{
+
+height:1px;
+
+background:#333;
+
+margin:15px 0;
+
+}
+
+.item{
+
+margin-bottom:14px;
+
+font-size:14px;
+
+line-height:20px;
+
+}
+
+.item strong{
+
+color:#FFD75A;
+
+}
+
+@media(max-width:500px){
+
+.serenata-centro{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+}
+
+</style>
+
+<script>
+
+function atualizarPainel(){
+
+const hora=new Date().getHours();
+const minuto=new Date().getMinutes();
+
+document.getElementById("horaAtual").innerHTML=
+String(hora).padStart(2,"0")+":"+String(minuto).padStart(2,"0");
+
+let atual="";
+let locutor="";
+let proximo="";
+
+if(hora>=0 && hora<6){
+
+atual="Madrugada Show (00h às 06h)";
+locutor="Rádio Serenata";
+proximo="Show da Manhã (06h às 10h)";
+
+}
+
+else if(hora>=6 && hora<10){
+
+atual="Show da Manhã (06h às 10h)";
+locutor="André Martins";
+proximo="Seleção Musical (10h às 12h)";
+
+}
+
+else if(hora>=10 && hora<12){
+
+atual="Seleção Musical (10h às 12h)";
+locutor="Jota Júnior";
+proximo="Flashback (12h às 15h)";
+
+}
+
+else if(hora>=12 && hora<15){
+
+atual="Flashback (12h às 15h)";
+locutor="Carla Mendes";
+proximo="Seleção Musical (15h às 18h)";
+
+}
+
+else if(hora>=15 && hora<18){
+
+atual="Seleção Musical (15h às 18h)";
+locutor="Jota Júnior";
+proximo="Show da Noite (18h às 21h)";
+
+}
+
+else if(hora>=18 && hora<21){
+
+atual="Show da Noite (18h às 21h)";
+locutor="Ednaldo Lima";
+proximo="Gospel Hits (21h às 22h)";
+
+}
+
+else if(hora>=21 && hora<22){
+
+atual="Gospel Hits (21h às 22h)";
+locutor="Roberta Sousa";
+proximo="Love Night (22h às 00h)";
+
+}
+
+else{
+
+atual="Love Night (22h às 00h)";
+locutor="Josué Silva";
+proximo="Madrugada Show (00h às 06h)";
+
+}
+
+document.getElementById("programaAtual").innerHTML=atual.split(" (")[0];
+document.getElementById("locutor").innerHTML=locutor;
+document.getElementById("agora").innerHTML=atual;
+document.getElementById("proximo").innerHTML=proximo;
+
+}
+
+atualizarPainel();
+
+setInterval(atualizarPainel,1000);
+
+</script>
+<!-- ===========================
+PROGRAMAÇÃO DO DIA
+RÁDIO SERENATA
+=========================== -->
+
+<div class="grade-card">
+
+    <div class="grade-topo">
+        🕒 PROGRAMAÇÃO DO DIA
+    </div>
+
+    <div class="grade-lista" id="gradeLista"></div>
+
+</div>
+
+<style>
+
+.grade-card{
+max-width:380px;
+width:100%;
+height:300px;
+background:linear-gradient(180deg,#111,#1d1d1d);
+border:2px solid #d4af37;
+border-radius:18px;
+overflow:hidden;
+font-family:Arial,Helvetica,sans-serif;
+color:white;
+box-shadow:0 0 20px rgba(212,175,55,.20);
+}
+
+.grade-topo{
+height:45px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:bold;
+background:linear-gradient(90deg,#d4af37,#ffd75a);
+color:#000;
+letter-spacing:1px;
+}
+
+.grade-lista{
+height:255px;
+overflow-y:auto;
+padding:8px;
+}
+
+.grade-lista::-webkit-scrollbar{
+width:6px;
+}
+
+.grade-lista::-webkit-scrollbar-thumb{
+background:#d4af37;
+border-radius:10px;
+}
+
+.programa{
+
+padding:10px;
+
+border-radius:12px;
+
+margin-bottom:8px;
+
+background:#202020;
+
+transition:.3s;
+
+border-left:4px solid transparent;
+
+}
+
+.programa:hover{
+
+background:#282828;
+
+}
+
+.programa h3{
+
+margin:2px 0;
+
+font-size:16px;
+
+color:#FFD75A;
+
+}
+
+.programa .hora{
+
+font-size:13px;
+
+font-weight:bold;
+
+color:#FFD75A;
+
+}
+
+.programa .locutor{
+
+font-size:13px;
+
+color:#ddd;
+
+margin-top:3px;
+
+}
+
+.programa .desc{
+
+font-size:12px;
+
+color:#aaa;
+
+margin-top:5px;
+
+line-height:17px;
+
+}
+
+.ativo{
+
+background:#2b2105;
+
+border-left:6px solid #FFD75A;
+
+box-shadow:0 0 15px rgba(255,215,90,.25);
+
+}
+
+.ativo h3{
+
+color:#fff;
+
+}
+
+.selo{
+
+display:inline-block;
+
+background:red;
+
+color:white;
+
+font-size:10px;
+
+padding:2px 8px;
+
+border-radius:20px;
+
+margin-left:8px;
+
+animation:pulse 1s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{opacity:.5;}
+
+50%{opacity:1;}
+
+100%{opacity:.5;}
+
+}
+
+@media(max-width:480px){
+
+.grade-card{
+
+max-width:100%;
+height:auto;
+
+}
+
+.grade-lista{
+
+height:auto;
+max-height:320px;
+
+}
+
+}
+
+</style>
+
+<script>
+
+const programacao=[
+
+{
+inicio:0,
+fim:6,
+hora:"00:00",
+nome:"Madrugada Show",
+locutor:"Rádio Serenata",
+desc:"Uma seleção musical escolhida especialmente para você. Sucessos nacionais e internacionais que marcaram época."
+},
+
+{
+inicio:6,
+fim:10,
+hora:"06:00",
+nome:"Show da Manhã",
+locutor:"André Martins",
+desc:"O melhor da música sertaneja pra você curtir."
+},
+
+{
+inicio:10,
+fim:12,
+hora:"10:00",
+nome:"Seleção Musical",
+locutor:"Jota Júnior",
+desc:"O melhor da música internacional, nacional, sertanejo, pagode e popular."
+},
+
+{
+inicio:12,
+fim:15,
+hora:"12:00",
+nome:"Flashback",
+locutor:"Carla Mendes",
+desc:"Músicas internacionais que marcaram época."
+},
+
+{
+inicio:15,
+fim:18,
+hora:"15:00",
+nome:"Seleção Musical 2",
+locutor:"Jota Júnior",
+desc:"Uma seleção de músicas internacionais e nacionais."
+},
+
+{
+inicio:18,
+fim:21,
+hora:"18:00",
+nome:"Show da Noite",
+locutor:"Ednaldo Lima",
+desc:"O melhor da música nacional."
+},
+
+{
+inicio:21,
+fim:22,
+hora:"21:00",
+nome:"Gospel Hits",
+locutor:"Roberta Sousa",
+desc:"Uma seleção musical gospel para você se aproximar de Deus."
+},
+
+{
+inicio:22,
+fim:24,
+hora:"22:00",
+nome:"Love Night",
+locutor:"Josué Silva",
+desc:"O melhor das Love Songs para você ter uma noite agradável."
+}
+
+];
+
+function carregarGrade(){
+
+let hora=new Date().getHours();
+
+let html="";
+
+programacao.forEach(function(p){
+
+let ativo=(hora>=p.inicio && hora<p.fim);
+
+html+=`
+
+<div class="programa ${ativo?'ativo':''}">
+
+<div class="hora">
+
+${p.hora}
+
+${ativo?'<span class="selo">AO VIVO</span>':''}
+
+</div>
+
+<h3>${p.nome}</h3>
+
+<div class="locutor">🎙️ ${p.locutor}</div>
+
+<div class="desc">${p.desc}</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("gradeLista").innerHTML=html;
+
+}
+
+carregarGrade();
+
+setInterval(carregarGrade,60000);
+
+</script>
+<!-- ===================================
+TOP 5 - RÁDIO SERENATA
+PARTE 1 - HTML + CSS
+=================================== -->
+
+<div class="top5-card">
+
+    <div class="top5-topo">
+        🏆 TOP 5 DA SEMANA
+    </div>
+
+    <div id="listaTop5"></div>
+
+</div>
+
+<style>
+
+.top5-card{
+
+width:100%;
+max-width:380px;
+height:500px;
+
+background:linear-gradient(180deg,#111,#1b1b1b);
+
+border:2px solid #D4AF37;
+
+border-radius:18px;
+
+overflow:hidden;
+
+font-family:Arial,Helvetica,sans-serif;
+
+box-shadow:0 0 20px rgba(212,175,55,.25);
+
+}
+
+.top5-topo{
+
+height:48px;
+
+background:linear-gradient(90deg,#D4AF37,#FFD75A);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:18px;
+
+font-weight:bold;
+
+color:#111;
+
+letter-spacing:1px;
+
+}
+
+#listaTop5{
+
+height:452px;
+
+overflow-y:auto;
+
+padding:10px;
+
+}
+
+#listaTop5::-webkit-scrollbar{
+
+width:6px;
+
+}
+
+#listaTop5::-webkit-scrollbar-thumb{
+
+background:#D4AF37;
+
+border-radius:10px;
+
+}
+
+.itemTop{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+padding:10px;
+
+margin-bottom:10px;
+
+background:#202020;
+
+border-radius:14px;
+
+transition:.3s;
+
+}
+
+.itemTop:hover{
+
+background:#2b2b2b;
+
+transform:scale(1.02);
+
+}
+
+.posicao{
+
+width:42px;
+
+font-size:28px;
+
+text-align:center;
+
+font-weight:bold;
+
+color:#FFD75A;
+
+}
+
+.capa{
+
+width:60px;
+
+height:60px;
+
+border-radius:12px;
+
+overflow:hidden;
+
+flex-shrink:0;
+
+}
+
+.capa img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+}
+
+.info{
+
+flex:1;
+
+}
+
+.info h3{
+
+margin:0;
+
+font-size:16px;
+
+color:#FFD75A;
+
+}
+
+.info p{
+
+margin:4px 0 0;
+
+font-size:13px;
+
+color:#ddd;
+
+}
+
+@media(max-width:480px){
+
+.top5-card{
+
+max-width:100%;
+
+height:auto;
+
+}
+
+#listaTop5{
+
+height:auto;
+
+}
+
+}
+
+</style>
+<!-- ===================================
+TOP 5 - PARTE 2
+DADOS EDITÁVEIS
+=================================== -->
+
+<script>
+
+const top5=[
+
+{
+foto:"https://i.postimg.cc/RhCcBZbS/0x1900-000000-80-0-0.jpg",
+musica:"Making love out of nothoing at all",
+cantor:"Air supply"
+},
+
+{
+foto:"https://i.postimg.cc/1zgCkJVH/djavancapacaixa.jpg",
+musica:"Se",
+cantor:"Djavan"
+},
+
+{
+foto:"https://i.postimg.cc/3xjJgFx0/Legiao-Urbana-As-Quatro-Estacoes.jpg",
+musica:"Hoje a noite não tem luar",
+cantor:"Legião urbana"
+},
+
+{
+foto:"https://i.postimg.cc/25K6686y/0x1900-000000-80-0-0-(1).jpg",
+musica:"Seu nome",
+cantor:"Biafra"
+},
+
+{
+foto:"https://i.postimg.cc/fLnG56qk/ana-carolina.jpg",
+musica:"Quem de nós dois",
+cantor:"Ana carolina"
+}
+
+];
+
+</script>
+<!-- ===================================
+TOP 5 - PARTE 3
+JAVASCRIPT
+=================================== -->
+
+<script>
+
+function medalha(pos){
+
+switch(pos){
+
+case 1:
+return "🥇";
+
+case 2:
+return "🥈";
+
+case 3:
+return "🥉";
+
+case 4:
+return "4️⃣";
+
+case 5:
+return "5️⃣";
+
+default:
+return pos;
+
+}
+
+}
+
+function carregarTop5(){
+
+let html="";
+
+top5.forEach(function(item,index){
+
+let pos=index+1;
+
+html+=`
+
+<div class="itemTop">
+
+<div class="posicao">
+
+${medalha(pos)}
+
+</div>
+
+<div class="capa">
+
+<img src="${item.foto}" alt="${item.musica}">
+
+</div>
+
+<div class="info">
+
+<h3>${item.musica}</h3>
+
+<p>${item.cantor}</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("listaTop5").innerHTML=html;
+
+}
+
+window.onload=function(){
+
+carregarTop5();
+
+};
+
+</script>
